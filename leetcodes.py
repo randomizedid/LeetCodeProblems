@@ -19,7 +19,7 @@ def CountGoodTriplets(arr, a, b, c):
                         count += 1
     return count
  
-#Revere Integer
+#Reverse Integer
 def ReverseInteger(x):
         sum = 0
         if x > 0:
@@ -71,6 +71,7 @@ def carPooling(trips, capacity):
             return False
     return True
 
+# 3Sum (9747 ms and 17.9 MB)
 def ThreeSum(nums):
     nums.sort()
     ans = []
@@ -89,7 +90,48 @@ def ThreeSum(nums):
                 right-=1
     return ans
 
+# The two following functions are a solutions I copied from the user "granola" for the problem Number of Islands.
+# I find it a smart solution without using graphs.
+def NumberOfIslands(grid):
+    islands = 0
+    for i in range(len(grid)):  
+        for j in range(len(grid[0])):
+            if grid[i][j] == '1':
+                islands += 1
+                part_of_island(i,j,grid)
+    return islands
 
-nums = sorted([-1,0,1,2,-1,-4,-2,-3,3,0,4])
-print(nums)
-print(ThreeSum(nums))
+def part_of_island(i, j,grid):
+    if i < 0 or j < 0 or i == len(grid) or j == len(grid[0]) or grid[i][j] != '1':
+        return
+    else:
+        grid[i][j] = '0'
+    part_of_island(i,j+1,grid)
+    part_of_island(i,j-1,grid)
+    part_of_island(i+1,j,grid)
+    part_of_island(i-1,j,grid)
+
+# Maximum Subarray
+def MaximumSubarray(nums):
+    curr = ans = nums[0]
+    for i in range(1, len(nums)):
+        curr = max(nums[i], curr+nums[i])
+        ans = max(ans, curr)
+
+    return ans
+
+# Roman to Integer (runtime error)
+def romanToInteger(s):
+    newdic = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000, 'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
+    sum = i = 0
+    while i<len(s)-1:
+        if(s[i:i+2]) in newdic:
+            sum+=newdic[s[i:i+2]]
+            i+=2
+        else:
+            sum+=newdic[s[i]]
+            i+=1
+    return sum
+
+s = "MCMXCIV"
+print(romanToInteger(s))
