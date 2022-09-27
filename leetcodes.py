@@ -56,5 +56,40 @@ def MinimumAverageDifference(nums):
                     
     return ind
 
-num = [4,2,0]
-print(MinimumAverageDifference(num))
+# I find this problem to be of particular interest: There is a car with a fixed capacity, and an array of trips in the form [numPassengers, from, to].
+# The goal is to find out if the car can complete all the trips without exceeding the capacity. The solutions implies building a difference array.
+def carPooling(trips, capacity):
+    arr = [0] * (max(trip[2] for trip in trips) + 1)
+    for (value, left, right) in trips:
+        arr[left] += value
+        arr[right] -= value
+
+    curr = 0
+    for i in range(len(arr)):
+        curr += arr[i]
+        if curr > capacity:
+            return False
+    return True
+
+def ThreeSum(nums):
+    nums.sort()
+    ans = []
+    for i in range(0, len(nums)-2):
+        left = i+1
+        right = len(nums)-1
+        while(left<right):
+            sum = nums[i] + nums[left] + nums[right]
+            if sum < 0:
+                left+=1
+            elif sum == 0:
+                if [nums[i], nums[left], nums[right]] not in ans:
+                    ans.append([nums[i], nums[left], nums[right]])
+                left+=1
+            else:
+                right-=1
+    return ans
+
+
+nums = sorted([-1,0,1,2,-1,-4,-2,-3,3,0,4])
+print(nums)
+print(ThreeSum(nums))
