@@ -57,6 +57,17 @@ int numberOfZeroFilledSubarrays(vector <int> nums){
     return ans;
 }
 
+// Check if Sentence is Pangram (3 ms and 6.7 MB)
+bool checkIfPangram(string sentence) {
+    unordered_set<char> dic;
+    for (int i = 0; i<sentence.size(); i++) {
+        if (dic.find(sentence[i]) == dic.end()) {
+            dic.insert(sentence[i]);
+        }
+    }
+    return (dic.size()==26);
+}
+
 int main(){
 
     vector <int> nums = {1,3,0,0,2,0,0,4};
