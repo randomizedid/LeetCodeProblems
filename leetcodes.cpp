@@ -68,6 +68,29 @@ bool checkIfPangram(string sentence) {
     return (dic.size()==26);
 }
 
+// FizzBuzz (9 ms and 8MB)
+vector<string> fizzBuzz(int n){
+    vector<string>ans;
+    for (int i = 0; i<n; i++){
+        if(i%3 == 0){
+            if(i%5 == 0){
+                ans.push_back("FizzBuzz");
+            }
+        else{
+            ans.push_back("Fizz");
+        }
+        }
+        if(i%5 == 0){
+            ans.push_back("Buzz");
+        }
+        else{
+            ans.push_back(str(i));
+        }
+    }
+    return ans;
+}
+
+
 int main(){
 
     vector <int> nums = {1,3,0,0,2,0,0,4};
