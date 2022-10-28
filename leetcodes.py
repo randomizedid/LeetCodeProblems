@@ -175,5 +175,7 @@ def deleteDuplicates2(head):
         dummy = dummy.next
     return prev.next
 
-s = "MCMXCIV"
-print(romanToIntegerTwo(s))
+# Delete Node (67 ms and 13.8 MB) in this problem you are asked to delete a node having only reference to that node and not to the head
+def deleteNode(self, node):
+    node.val = node.next.val
+    node.next = node.next.next
