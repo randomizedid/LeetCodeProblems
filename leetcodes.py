@@ -149,5 +149,31 @@ def romanToIntegerTwo(s):
             i+=1
     return sum
 
+def removeDuplicates(head):
+    dummy = head
+    while dummy and dummy.next:
+        if dummy.value == dummy.next.value:
+            dummy.next = dummy.next.next
+        dummy = dummy.next
+
+# Delete Duplicates II (55 ms and 13.8 MB)
+def deleteDuplicates2(head):
+    dummy = ListNode(0)
+    dummy.next = head
+    prev = dummy
+    while dummy.next and dummy.next.next:
+        if dummy.next.val == dummy.next.next.val:
+            jump = dummy.next
+            while(jump.val == jump.next.val):
+                jump = jump.next
+                if jump.next:
+                    continue
+                else:
+                    break
+            dummy.next = jump.next
+            continue
+        dummy = dummy.next
+    return prev.next
+
 s = "MCMXCIV"
 print(romanToIntegerTwo(s))
